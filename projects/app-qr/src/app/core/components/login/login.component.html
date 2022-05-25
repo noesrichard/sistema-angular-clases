@@ -1,11 +1,23 @@
-<form>
-    <mat-form-field appearance="outline">
-        <mat-label>Correo</mat-label>
-        <input matInput type="text">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Clave</mat-label>
-        <input matInput type="password">
-    </mat-form-field>
-    <button mat-raised-button color="primary">Ingresar</button>
-</form>
+<div class="body">
+    <div class="img">
+
+    </div>
+    <div class="login-form"> 
+        <h2>Credenciales</h2>
+        <form fxLayout="column">
+            <mat-form-field appearance="outline">
+                <mat-label>Correo</mat-label>
+                <input matInput type="text" placeholder="Correo" required>
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Clave</mat-label>
+                <input matInput type="{{hidePassword?'password':'text'}}" placeholder="Ingrese la contrase;a" required>
+                <button mat-icon-button type="button" matSuffix>
+                    <mat-icon (click)="hidePassword=!hidePassword">{{hidePassword?"lock":"lock_open"}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <button mat-raised-button color="warn">Ingresar</button>
+        </form>
+    </div>
+</div>

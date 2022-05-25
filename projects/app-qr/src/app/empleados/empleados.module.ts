@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PagesEmpleadosComponent } from './pages/pages-empleados/pages-empleados.component';
-import { RouterModule } from '@angular/router';
 
+import { EmpleadosRoutingModule } from './empleados-routing.module';
+import { PageListComponent } from './pages/page-list/page-list.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    PagesEmpleadosComponent
+    PageListComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    EmpleadosRoutingModule,
+    SharedModule,
   ]
 })
 export class EmpleadosModule { }

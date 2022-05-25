@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {AgenciasModule} from './agencias/agencias.module';
-import { PageAgenciaComponent } from './agencias/pages/page-agencia/page-agencia.component';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
-import { PageLoginComponent } from './core/page/page-login/page-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { PageListComponent } from './services/pages/page-list/page-list.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule, 
-    AgenciasModule, BrowserAnimationsModule
+    BrowserAnimationsModule, 
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent],

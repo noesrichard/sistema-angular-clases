@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PageQrComponent } from './pages/page-qr/page-qr.component';
-import { Router, RouterModule } from '@angular/router';
 
+import { QuejasReclamosRoutingModule } from './quejas-reclamos-routing.module';
+import { PageListComponent } from './pages/page-list/page-list.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    PageQrComponent
+    PageListComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    QuejasReclamosRoutingModule, 
+    SharedModule,
   ]
 })
 export class QuejasReclamosModule { }

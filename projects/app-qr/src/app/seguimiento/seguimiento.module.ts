@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PageSeguimientoComponent } from './pages/page-seguimiento/page-seguimiento.component';
-import { RouterModule } from '@angular/router';
 
+import { SeguimientoRoutingModule } from './seguimiento-routing.module';
+import {SharedModule} from '../shared/shared.module';
+import { PageListComponent } from './pages/page-list/page-list.component';
 
 
 @NgModule({
   declarations: [
-    PageSeguimientoComponent
+    PageListComponent
   ],
   imports: [
-    CommonModule, 
-    RouterModule
+    CommonModule,
+    SeguimientoRoutingModule,
+    SharedModule
   ]
 })
 export class SeguimientoModule { }

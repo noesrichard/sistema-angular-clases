@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { PagesClientesComponent } from './pages/pages-clientes/pages-clientes.component';
 
+import { ClientesRoutingModule } from './clientes-routing.module';
+import { PageListComponent } from './pages/page-list/page-list.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    PagesClientesComponent
+    PageListComponent
   ],
   imports: [
-    CommonModule, 
-    RouterModule
-  ], 
-  exports:[
-    PagesClientesComponent
+    CommonModule,
+    ClientesRoutingModule,
+    SharedModule,
   ]
 })
 export class ClientesModule { }

@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'qr-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'qr-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'appQR';
+    expanded = true;
+    title = 'appQR';
+
+    toggleExpaned(expanded:boolean){ 
+        this.expanded = expanded; 
+    }
 }

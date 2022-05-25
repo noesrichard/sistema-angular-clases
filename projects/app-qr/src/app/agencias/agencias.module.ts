@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PageAgenciaComponent } from './pages/page-agencia/page-agencia.component';
-import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from '../app-routing.module';
 
+import { AgenciasRoutingModule } from './agencias-routing.module';
+import { PageListComponent } from './pages/page-list/page-list.component';
+import {SharedModule} from '../shared/shared.module';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 
 @NgModule({
   declarations: [
-    PageAgenciaComponent
+    PageListComponent
   ],
   imports: [
     CommonModule,
-    RouterModule, 
-    AppRoutingModule   
-  ], 
-  exports: [
-      PageAgenciaComponent
+    AgenciasRoutingModule,
+    SharedModule,
+    MatTableExporterModule,
   ]
 })
 export class AgenciasModule { }

@@ -1,0 +1,24 @@
+.container{ 
+    width: 100vw;
+    height: 100vh;
+    background-color:orange;
+}
+
+.info{ 
+    padding: 150px;
+}
+
+.info h2{ 
+    color: whitesmoke;
+    font-size: 42px;
+    line-height: 46px;
+    text-align: center;
+}
+
+.info img{ 
+    max-width: 300px;
+}
+
+.login{ 
+    background: white;
+}

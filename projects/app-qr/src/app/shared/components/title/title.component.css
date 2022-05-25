@@ -1,0 +1,9 @@
+mat-toolbar{ 
+    background-color: #039be5;
+    height: 80%;
+}
+h2{
+    font-size: 25px;
+    color: white !important;
+    line-height: 80px;
+}
