@@ -6,14 +6,6 @@ import { MetaDataColumn } from '../../interfaz/metacolumn.interface';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
-export interface product {
-    id: number;
-    name: string;
-    brand: string;
-    color: string;
-    price: number;
-}
-
 @Component({
     selector: 'qr-download',
     templateUrl: './download.component.html',
