@@ -23,6 +23,7 @@
     "@angular/router": "~13.3.0",
     "exceljs": "^4.3.0",
     "file-saver": "^2.0.5",
+    "jspdf-autotable": "^3.5.24",
     "mat-table-exporter": "^10.2.4",
     "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~7.5.0",

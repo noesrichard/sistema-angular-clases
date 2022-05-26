@@ -3,6 +3,8 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { Workbook } from 'exceljs';
 import * as fs from 'file-saver';
 import { MetaDataColumn } from '../../interfaz/metacolumn.interface';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 export interface product {
     id: number;
@@ -31,7 +33,8 @@ export class DownloadComponent implements OnInit {
                 key: e.field,
             });
         });
-        console.log(columns)
+
+        console.log(columns);
         return columns;
     }
 
@@ -41,7 +44,7 @@ export class DownloadComponent implements OnInit {
 
         let rows: any[] = this.data.rows;
 
-        worksheet.columns = this.setColumns(); 
+        worksheet.columns = this.setColumns();
 
         rows.forEach((e) => {
             worksheet.addRow(e, 'n');
@@ -55,5 +58,34 @@ export class DownloadComponent implements OnInit {
         });
     }
 
-    exportarPDF() {}
+    exportarPDF() {
+        let field: string[] = [];
+        let head: string[] = [];
+        let body: any[] = [];
+        let item: any[] = [];
+
+        let rows: any[] = this.data.rows;
+        let headers: MetaDataColumn[] = this.data.headers;
+
+        headers.forEach((element) => {
+            field.push(element.field);
+            head.push(element.title);
+        });
+
+        rows.forEach((value) => {
+            field.forEach((key) => {
+                item.push(value[key]);
+            });
+            body.push(item);
+            item = [];
+        });
+
+        console.log(head);
+        const doc = new jsPDF();
+        autoTable(doc, {
+            head: [head],
+            body: body,
+        });
+        doc.save('my_table.pdf');
+    }
 }
