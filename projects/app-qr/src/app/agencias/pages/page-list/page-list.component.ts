@@ -7,6 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { KeypadButton } from '../../../shared/components/interfaces/keypadbutton';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DownloadComponent } from '../../../shared/components/download/download.component';
+import { AgenciaService } from '../../services/agencia.service';
+import { FormComponent } from '../../components/form/form.component';
 
 @Component({
     selector: 'qr-page-list',
@@ -14,69 +16,10 @@ import { DownloadComponent } from '../../../shared/components/download/download.
     styleUrls: ['./page-list.component.css'],
 })
 export class PageListComponent implements OnInit {
-    recordsAgency: any[] = [
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-        { id: 1, agency: 'Ambato', address: 'Calle A' },
-        { id: 2, agency: 'Quito', address: 'Calle B' },
-        { id: 3, agency: 'Riobamba', address: 'Calle C' },
-        { id: 4, agency: 'Guayaquil', address: 'Calle D' },
-        { id: 5, agency: 'Machala', address: 'Calle E' },
-    ];
-
-    //columns: string[] = ['id', 'agency', 'address'];
-    //
+    recordsAgency: any[] = [];
     metaDataColumns: MetaDataColumn[] = [
-        { field: 'id', title: 'ID' },
-        { field: 'agency', title: 'AGENCIA' },
+        { field: '_id', title: 'ID' },
+        { field: 'name', title: 'AGENCIA' },
         { field: 'address', title: 'DIRECCION' },
     ];
 
@@ -92,15 +35,19 @@ export class PageListComponent implements OnInit {
     constructor(
         private dialog: MatDialog,
         private snackBar: MatSnackBar,
-        private bottomSheet: MatBottomSheet
+        private bottomSheet: MatBottomSheet,
+        private agencyService: AgenciaService
     ) {
         this.changePage(0);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.loadAgencies();
+    }
 
     data: any[] = [];
-    totalRecords = this.recordsAgency.length;
+    //totalRecords = this.recordsAgency.length;
+    totalRecords = 0;
 
     changePage(page: number) {
         const pageSize = environment.PAGE_SIZE;
@@ -108,7 +55,39 @@ export class PageListComponent implements OnInit {
         this.data = this.recordsAgency.slice(skip, skip + pageSize);
     }
 
-    openForm(row: any) {}
+    openForm(row: any = null) {
+        const options = {
+            panelClass: 'panel-container',
+            disableClose: true,
+            data: row,
+        };
+        const reference: MatDialogRef<FormComponent> = this.dialog.open(
+            FormComponent,
+            options
+        );
+        reference.afterClosed().subscribe((response) => {
+            console.log(response); 
+            if (!response) {
+                return;
+            }
+            if (response.id) {
+                const agency = { ...response };
+                console.log(agency); 
+                this.agencyService
+                    .updateAgency(response.id, agency)
+                    .subscribe(() => {
+                        this.changePage(0);
+                        this.showMessage('Registro actualizado');
+                    });
+            } else {
+                const agency = { ...response };
+                this.agencyService.addAgency(agency).subscribe(() => {
+                    this.changePage(0);
+                    this.showMessage('Registro exitoso');
+                });
+            }
+        });
+    }
 
     delete(id: number) {
         const reference: MatDialogRef<ConfirmComponent> = this.dialog.open(
@@ -146,6 +125,7 @@ export class PageListComponent implements OnInit {
                 );
                 break;
             case 'NEW':
+                this.openForm();
                 break;
         }
     }
@@ -156,6 +136,15 @@ export class PageListComponent implements OnInit {
                 rows: this.recordsAgency,
                 headers: this.metaDataColumns,
             },
+        });
+    }
+
+    loadAgencies() {
+        this.agencyService.loadAgencias().subscribe((data) => {
+            console.log(data);
+            this.recordsAgency = data;
+            this.totalRecords = this.recordsAgency.length;
+            this.changePage(0);
         });
     }
 }

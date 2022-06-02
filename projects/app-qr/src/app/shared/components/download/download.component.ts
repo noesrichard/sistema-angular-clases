@@ -39,7 +39,7 @@ export class DownloadComponent implements OnInit {
         worksheet.columns = this.setColumns();
 
         rows.forEach((e) => {
-            worksheet.addRow(e, 'n');
+            worksheet.addRow(e);
         });
 
         workbook.xlsx.writeBuffer().then((rows) => {

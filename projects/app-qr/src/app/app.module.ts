@@ -6,6 +6,7 @@ import {CoreModule} from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PageListComponent } from './services/pages/page-list/page-list.component'
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PageListComponent } from './services/pages/page-list/page-list.componen
     AppRoutingModule,
     CoreModule, 
     BrowserAnimationsModule, 
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
